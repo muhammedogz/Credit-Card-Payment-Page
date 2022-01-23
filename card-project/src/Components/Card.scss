@@ -1,5 +1,7 @@
 .card-div {
     position: relative;
+
+    z-index: 999;
 }
 
 .card-text {
@@ -18,4 +20,13 @@
 .card-text-right {
     top: 53%;
     right: 19%;
+}
+
+.card-brand {
+    position: absolute;
+    top: 6%;
+    left: 6%;
+
+    width: 27%;
+
 }

@@ -6,6 +6,8 @@ import './Card.scss';
 
 const front = '/card_front.jpg';
 const back = '/card_back.jpg';
+const mastercard = '/mastercard.png';
+const visa = '/visa.png';
 
 console.log(process.env.PUBLIC_URL)
 
@@ -13,6 +15,12 @@ const Card = () => {
 
     const [isFlipped, setIsFlipped] = useState(false);
     const [showText, setShowText] = useState(true);
+    const [isMasterCard, setIsMasterCard] = useState(true);
+    const [isVisa, setIsVisa] = useState(false);
+
+    const [cardType, setCardType] = useState(mastercard);
+
+
 
     const handleClick = () => {
         setIsFlipped(!isFlipped);
@@ -36,7 +44,8 @@ const Card = () => {
                 </div>
             </ReactCardFlip>
             {!isFlipped && showText && <><p className="card-text card-text-left"> 0545 </p>
-            <p className="card-text card-text-right"> 0545 </p></>}
+            <p className="card-text card-text-right"> 0545 </p>
+            <img className="card-brand" src={process.env.PUBLIC_URL + cardType } alt="mastercard" /></>}
         </div>
         </>
     )

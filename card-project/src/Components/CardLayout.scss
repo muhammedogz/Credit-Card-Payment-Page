@@ -1,7 +1,18 @@
 .center-div {
     display: flex;
+    
     justify-content: center;
     align-items: center;
 
     height: 100vh;
+}
+
+.form-div {
+    text-align: center;
+    display: block;
+}
+
+.input-form {
+    display: flex;
+    flex-direction: row;
 }

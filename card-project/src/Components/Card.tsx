@@ -43,10 +43,14 @@ const Card = () => {
                     <img src={process.env.PUBLIC_URL + back} alt="back" />
                 </div>
             </ReactCardFlip>
-            {!isFlipped && showText && <><p className="card-text card-text-left"> 0545 </p>
+            {(!isFlipped && showText) ? <><p className="card-text card-text-left"> 0545 </p>
             <p className="card-text card-text-right"> 0545 </p>
             <p className="card-text card-time">Date: 04/23</p>
-            <img className="card-brand" src={process.env.PUBLIC_URL + cardType } alt="mastercard" /></>}
+            <img className="card-brand" src={process.env.PUBLIC_URL + cardType } alt="mastercard" /></> : 
+            <>
+                <p className="card-text card-ccv" >CCV: 321</p>
+            </>
+            }
         </div>
         </>
     )

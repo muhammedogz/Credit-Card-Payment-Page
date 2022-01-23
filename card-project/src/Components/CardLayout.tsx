@@ -3,8 +3,10 @@ import { useState } from 'react';
 import Datetime from "react-datetime";
 import 'react-datetime/css/react-datetime.css';
 
+
 import Card from './Card'
 import './CardLayout.scss';
+import './Button.scss';
 
 const mastercard = '/mastercard.png';
 const visa = '/visa.png';
@@ -91,6 +93,9 @@ const CardLayout = () => {
                         />
                         </label>
                     </div>
+                </div>
+                <div className="wrap">
+                    <button className="button">Submit</button>
                 </div>
             </form>
         </div>

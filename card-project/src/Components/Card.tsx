@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import ReactCardFlip from 'react-card-flip';
 
 import './Card.scss';
@@ -20,7 +19,6 @@ const Card = ( { cardType, cardNumber, cardCCV, cardDate } : CardProps ) => {
     const [showText, setShowText] = useState(true);
 
 
-
     let leftSide = '';
     let rightSide = '';
 
@@ -34,7 +32,6 @@ const Card = ( { cardType, cardNumber, cardCCV, cardDate } : CardProps ) => {
             const showValue = length - 12;
             rightSide = splitString.slice(length - showValue).join('');
         }
-        // get last 4 digits
     }
 
     splitStringToLeftRight(cardNumber);

@@ -11,12 +11,40 @@ import './Button.scss';
 const mastercard = '/mastercard.png';
 const visa = '/visa.png';
 
+
 const CardLayout = () => {
 
     const [cardType, setCardType] = useState('');
     const [cardNumber, setCardNumber] = useState('');
     const [cardCCV, setCardCCV] = useState('');
     const [cardDate, setCardDate] = useState('');
+    const [paymentSuccess, setPaymentSuccess] = useState(false);
+
+    const checkValidCard = async (e : any) => {
+        e.preventDefault();
+
+        const response = await fetch('https://mocki.io/v1/a5ae8585-b42d-486b-a4ff-25ebfebbaddf');
+        const body = await response.json();
+
+        
+        // first check, if card number, ccv and date are not empty
+        if (!(cardNumber && cardCCV && cardDate)) {
+            setPaymentSuccess(false);
+            return;
+        }
+
+        
+        // iterate through the body and check if the card number is valid
+        for (let i = 0; i < body.length; i++) {
+            if (body[i].number === cardNumber && body[i].ccv === cardCCV && body[i].exp === cardDate) {
+                setPaymentSuccess(true);
+                return;
+            }
+        }
+
+        setPaymentSuccess(false);
+    };
+
     
 
     const checkCardNumber = (cardNumber: string) => {
@@ -44,7 +72,16 @@ const CardLayout = () => {
         // if type is moment
         if (date instanceof moment) {
             const newDate = moment(date);
-            setCardDate(newDate.format('MM/YYYY'));
+
+            const year = newDate.year() - 2000;
+            let month = (newDate.month() + 1).toString();
+
+            // if month is less than 10, add a 0
+            if (month.length === 1) {
+                month = '0' + month;
+            }
+
+            setCardDate(`${month}/${year}`);
         }
 
     }
@@ -52,7 +89,7 @@ const CardLayout = () => {
     return (
         <>
         <div className='center-div'>
-            <form className='inner-div'>
+            <form onSubmit={checkValidCard} className='inner-div'>
                 <div>
                     <Card cardType={cardType} cardNumber={cardNumber} cardDate={cardDate} cardCCV={cardCCV} />
                 </div>
@@ -97,6 +134,7 @@ const CardLayout = () => {
                 <div className="wrap">
                     <button className="button">Submit</button>
                 </div>
+                {paymentSuccess && <div className='success-message'>Payment Successful</div>}
             </form>
         </div>
         </>

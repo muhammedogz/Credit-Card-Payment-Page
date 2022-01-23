@@ -1,12 +1,11 @@
 .card-div {
     position: relative;
-    background-color: yellow;
 }
 
 .card-text {
     position: absolute;
     font-size: 1.6em;
-
+    background-color: #fff;
     transition: all 0.3s ease-in-out;
 
 }

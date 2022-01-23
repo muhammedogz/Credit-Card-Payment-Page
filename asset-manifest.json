@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Credit-Card-Payment-Page/static/css/main.2cc3fe2e.css",
+    "main.js": "/Credit-Card-Payment-Page/static/js/main.6d180442.js",
+    "index.html": "/Credit-Card-Payment-Page/index.html",
+    "main.2cc3fe2e.css.map": "/Credit-Card-Payment-Page/static/css/main.2cc3fe2e.css.map",
+    "main.6d180442.js.map": "/Credit-Card-Payment-Page/static/js/main.6d180442.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2cc3fe2e.css",
+    "static/js/main.6d180442.js"
+  ]
+}

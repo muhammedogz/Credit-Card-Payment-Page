@@ -11,7 +11,6 @@ const visa = '/visa.png';
 
 const CardLayout = () => {
 
-    const [isMasterCard, setIsMasterCard] = useState(false);
     const [cardType, setCardType] = useState('');
     const [cardNumber, setCardNumber] = useState('');
     const [cardCCV, setCardCCV] = useState('');
@@ -28,13 +27,10 @@ const CardLayout = () => {
         if (cardNumberLength === 16) {
             if (cardNumber.startsWith('4')) {
                 setCardType(visa);
-                setIsMasterCard(false);
             } else if (cardNumber.startsWith('5')) {
                 setCardType(mastercard);
-                setIsMasterCard(true);
             } else {
                 setCardType('');
-                setIsMasterCard(false);
             }
         }
         

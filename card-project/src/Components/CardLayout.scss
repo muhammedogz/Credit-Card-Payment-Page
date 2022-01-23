@@ -11,3 +11,17 @@
     text-align: center;
     display: block;
 }
+
+.input-form label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.input-form input {
+    display: block;
+}
+
+
+

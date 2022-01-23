@@ -16,16 +16,28 @@ const CardLayout = () => {
     const [cardNumber, setCardNumber] = useState('');
     const [cardCCV, setCardCCV] = useState('');
     const [cardDate, setCardDate] = useState('');
-
-    const [year, setYear] = useState('');
-    const [month, setMonth] = useState('');
     
 
     const checkCardNumber = (cardNumber: string) => {
         const cardNumberLength = cardNumber.length;
-        // if card contains alphabets
-        // delete last character
 
+        if (cardNumberLength !== 16) {
+            setCardType('');
+        }
+
+        if (cardNumberLength === 16) {
+            if (cardNumber.startsWith('4')) {
+                setCardType(visa);
+                setIsMasterCard(false);
+            } else if (cardNumber.startsWith('5')) {
+                setCardType(mastercard);
+                setIsMasterCard(true);
+            } else {
+                setCardType('');
+                setIsMasterCard(false);
+            }
+        }
+        
         setCardNumber(cardNumber.replace(/[^0-9]/g, ''));
             
     }
@@ -33,15 +45,7 @@ const CardLayout = () => {
     const setDate = (date : string | moment.Moment) => {
         // if type is moment
         if (date instanceof moment) {
-            // create new moment object with date
             const newDate = moment(date);
-            console.log(newDate.year())
-            console.log(newDate.month())
-
-            
-            setYear(newDate.year().toString());
-            setMonth((newDate.month() + 1).toString());
-
             setCardDate(newDate.format('MM/YYYY'));
         }
 
@@ -50,7 +54,7 @@ const CardLayout = () => {
     return (
         <>
         <div className='center-div'>
-            <div className='inner-div'>
+            <form className='inner-div'>
                 <div>
                     <Card cardType={cardType} cardNumber={cardNumber} cardDate={cardDate} cardCCV={cardCCV} />
                 </div>
@@ -92,7 +96,7 @@ const CardLayout = () => {
                         </label>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
         </>
     )

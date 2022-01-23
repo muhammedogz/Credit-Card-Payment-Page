@@ -1,0 +1,22 @@
+.card-div {
+    position: relative;
+    background-color: yellow;
+}
+
+.card-text {
+    position: absolute;
+    font-size: 1.6em;
+
+    transition: all 0.3s ease-in-out;
+
+}
+
+.card-text-left {
+    top: 53%;
+    left: 11%;
+}
+
+.card-text-right {
+    top: 53%;
+    right: 19%;
+}

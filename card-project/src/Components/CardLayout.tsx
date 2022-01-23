@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { useState } from 'react';
 import Datetime from "react-datetime";
 import 'react-datetime/css/react-datetime.css';
@@ -18,6 +19,7 @@ const CardLayout = () => {
 
     const [year, setYear] = useState('');
     const [month, setMonth] = useState('');
+    
 
     const checkCardNumber = (cardNumber: string) => {
         const cardNumberLength = cardNumber.length;
@@ -28,12 +30,22 @@ const CardLayout = () => {
             
     }
 
-    const printDate = (date : any) => {
-        console.log(date)
-        setYear("2005");
-        setMonth("10");
-    }
+    const setDate = (date : string | moment.Moment) => {
+        // if type is moment
+        if (date instanceof moment) {
+            // create new moment object with date
+            const newDate = moment(date);
+            console.log(newDate.year())
+            console.log(newDate.month())
 
+            
+            setYear(newDate.year().toString());
+            setMonth((newDate.month() + 1).toString());
+
+            setCardDate(newDate.format('MM/YYYY'));
+        }
+
+    }
 
     return (
         <>
@@ -60,7 +72,23 @@ const CardLayout = () => {
                     </div>
                     <div>
                         <label> Expiration Date:
-                            <Datetime value={year + month} dateFormat="MM/YYYY" onChange={(e) => printDate(e)} />
+                        {/* value={new Date(year + "-" + month)} dateFormat="MM/YYYY" onChange={(date) => printDate(date)} */}
+                            <Datetime dateFormat="MM/YYYY" timeFormat={false} onChange={(date) => setDate(date)}  />
+                        </label>
+                    </div>
+                    <div className='input-form'>
+                        <label >CCV:
+                        <input 
+                            type='text' 
+                            name='card-ccv'
+                            id='card-ccv'
+                            placeholder='Enter CCV'
+                            max={3}
+                            pattern="[0-9]{3}"
+                            maxLength={3}
+                            value={cardCCV}
+                            onChange={(e) => setCardCCV(e.target.value)}
+                        />
                         </label>
                     </div>
                 </div>
@@ -68,6 +96,8 @@ const CardLayout = () => {
         </div>
         </>
     )
+    
 }
+
 
 export default CardLayout
